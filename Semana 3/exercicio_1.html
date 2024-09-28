@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcas de Carro</title>
+    <style>
+        #marcaCarro {
+            font-size: 2em;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #formulario {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #formulario input {
+            font-size: 1.2em;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        #formulario button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="marcaCarro">
+        <ol id="listaCarros"></ol>
+    </div>
+
+    <div id="formulario">
+        <input type="text" id="inputMarca" placeholder="Digite uma marca de carro">
+        <button onclick="adicionarMarca()">Adicionar</button>
+    </div>
+
+    <script>
+        var cars = [];
+
+        function adicionaCarro(carro) {
+            if (cars.includes(carro)) {
+                alert("Erro: Essa marca já foi informada.");
+            } else {
+                cars.push(carro);
+                cars.sort();
+                exibirCarros();
+            }
+        }
+
+        function exibirCarros() {
+            var listaCarros = document.getElementById("listaCarros");
+            listaCarros.innerHTML = "";
+
+            cars.forEach((item) => {
+                var li = document.createElement("li");
+                li.textContent = item;
+                listaCarros.appendChild(li);
+            });
+        }
+
+        function adicionarMarca() {
+            var inputMarca = document.getElementById("inputMarca");
+            var carro = inputMarca.value.trim();
+
+            if (carro) {
+                adicionaCarro(carro);
+                inputMarca.value = "";
+                inputMarca.focus();
+            } else {
+                console.log("Entrada vazia. Nada será adicionado.");
+            }
+        }
+    </script>
+</body>
+</html>

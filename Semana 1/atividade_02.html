@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        function numPrimo(num) {
+            if (num <= 1) return false;
+            if (num === 2) return true;
+            if (num % 2 === 0) return false;
+            
+            for (let i = 3; i < num; i += 1) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        let numero;
+        do { 
+            numero = prompt("Digite um número inteiro positivo","");
+            numero = parseInt(numero);
+
+            if (isNaN(numero) || numero < 0) {
+                alert("Por favor, digite um número inteiro positivo.");
+            } else {
+                if (numPrimo(numero)) {
+                    alert("Número primo! ");
+                } else {
+                    alert("Número não é primo! ");
+                }
+            }
+        } while (numero < 0 || isNaN(numero));
+        
+    </script>
+</head>
+<body>
+</body>
+</html>
+
