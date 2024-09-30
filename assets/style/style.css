@@ -104,7 +104,7 @@
   .details .about {
     line-height: 1.5rem;
   }
-
+  
   .atv {
     width: 100%;
   }
@@ -134,3 +134,25 @@
       width: 55%;
     }
   }
+
+  .details ol {
+    text-align: left;
+    padding-left: 2rem;
+  }
+  
+  .details ol li {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .details ol li a {
+    color: #343b45;
+    text-decoration: none;
+  }
+  
+  .details ol li a:hover {
+    color: #52c8ff;
+    text-decoration: underline;
+  }
+  
