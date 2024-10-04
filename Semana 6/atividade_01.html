@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Letreiro Fatec</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .typewriter {
+      font-size: 2em;
+      border-right: 2px solid;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink {
+      0% { border-color: transparent; }
+      50% { border-color: black; }
+      100% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    function Typewriter({ text = '', speed = 150 }) {
+      const [displayedText, setDisplayedText] = useState('');
+      const indexRef = useRef(0); 
+
+      useEffect(() => {
+        if (typeof text !== 'string') {
+          console.error('A prop "text" deve ser uma string.');
+          return;
+        }
+
+        const addCharacter = () => {
+          if (indexRef.current < text.length) {
+            setDisplayedText((prev) => prev + text.charAt(indexRef.current));
+            indexRef.current += 1;
+            setTimeout(addCharacter, speed);
+          }
+        };
+
+        addCharacter();
+
+        return () => {
+          indexRef.current = text.length;
+        };
+      }, [text, speed]);
+
+      return (
+        <div className="typewriter">
+          {displayedText}
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <Typewriter text="Veenha estudar na Fatec!" speed={150} />
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
